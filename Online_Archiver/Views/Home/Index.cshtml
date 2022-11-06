@@ -1,8 +1,64 @@
-﻿@{
+﻿@model IEnumerable<Online_Archiver.Models.FileDetails>
+@*@model Online_Archiver.Models.FilesUploadModel*@
+@{
     ViewData["Title"] = "Home Page";
 }
 
+<form method="post" asp-controller="Home" asp-action="Upload" enctype="multipart/form-data">
+    <input type="file" name="files" multiple />
+    <button type="submit">Upload</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" style="margin-top:50px">
+        @ViewBag.Message
+    </div>
+}
+
+<p style="margin-top: 50px">List of Files</p>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a asp-action="Download"
+                asp-route-filename="@item.FileName">
+                @item.FileName
+            </a>
+        </li>
+    }
+</ul>
+
+<!--
+<style>
+    body {
+        background: #d6eaf8;
+    }
+
+    .gradient-button {
+        text-decoration: none;
+        display: inline-block;
+        color: white;
+        padding: 20px 30px;
+        margin: 10px 20px;
+        align-items: left;
+        border-radius: 10px;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background-image: linear-gradient(to right, #FB876E 0%, #FF6442 51%, #FE3C12 100%);
+        background-size: 200% auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+        transition: .5s;
+    }
+
+        .gradient-button:hover {
+            background-position: right center;
+</style>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Drag your file here</h1>
+    <a href="@Url.Action(" ") class="gradient-button">Upload file</a>
+    
 </div>
+-->

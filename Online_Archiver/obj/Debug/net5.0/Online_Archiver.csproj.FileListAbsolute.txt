@@ -37,3 +37,5 @@ D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.genruntimeconfig.cache
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\ref\Online_Archiver.dll
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.csproj.CopyComplete
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Upload\Index.cshtml.g.cs
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Home\Upload.cshtml.g.cs
