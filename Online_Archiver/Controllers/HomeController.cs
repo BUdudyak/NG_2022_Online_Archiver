@@ -29,8 +29,9 @@ namespace Online_Archiver.Controllers
             return View(_dataService.GetFiles());
         }
 
-        public IActionResult Privacy()
+        public IActionResult Archiver()
         {
+
             return View();
         }
 

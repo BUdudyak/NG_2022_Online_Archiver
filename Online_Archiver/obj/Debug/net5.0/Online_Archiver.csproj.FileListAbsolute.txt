@@ -22,7 +22,6 @@ D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.TagHelpers.output.cache
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.RazorCoreGenerate.cache
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -38,4 +37,4 @@ D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\ref\Online_Archiver.dll
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.csproj.CopyComplete
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Upload\Index.cshtml.g.cs
-D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Home\Upload.cshtml.g.cs
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Home\Archiver.cshtml.g.cs
