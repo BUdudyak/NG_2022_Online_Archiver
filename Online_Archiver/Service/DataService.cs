@@ -10,7 +10,7 @@ namespace Online_Archiver.Service
         public List<FileDetails> GetFiles()
         {
             var listFiles = new List<FileDetails>();
-            DirectoryInfo d = new DirectoryInfo(@"UploadedFiles"); //Assuming Test is your Folder
+            DirectoryInfo d = new DirectoryInfo(@"UploadedFiles");
 
             FileInfo[] Files = d.GetFiles(); //Getting Text files
 

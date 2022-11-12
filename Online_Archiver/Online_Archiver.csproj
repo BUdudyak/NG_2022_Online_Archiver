@@ -8,4 +8,9 @@
     <Folder Include="UploadedFiles\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SharpZipLib.NETStandard" Version="1.0.7" />
+    <PackageReference Include="ztools.other.SharpZipLib" Version="0.86.0" />
+  </ItemGroup>
+
 </Project>
