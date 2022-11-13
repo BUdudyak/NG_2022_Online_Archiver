@@ -38,3 +38,11 @@ D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\ref\Online_Archi
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.csproj.CopyComplete
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Upload\Index.cshtml.g.cs
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Home\Archiver.cshtml.g.cs
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\ICSharpCode.SharpZipLib.dll
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\Grpc.Core.dll
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\Grpc.Core.Api.dll
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll

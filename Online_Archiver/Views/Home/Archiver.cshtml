@@ -1,1 +1,20 @@
-﻿
+﻿@model List<string>
+@{
+    ViewBag.Title = "Archiver";
+    int i = 0;
+}
+<h2>Выбрать файлы для загрузки</h2>
+<form asp-controller="Home" asp-action="Archivation" method="post">
+    @foreach (var filename in Model)
+    {
+        <p>
+            <input type="checkbox" name="files[@i].Selected" value="true" />
+            <input type="hidden" name="files[@i].Selected" value="false" />
+            <input type="hidden" name="files[@i].Name" value="@filename" />
+            @filename
+        </p>
+
+        i++;
+    }
+    <input type="submit" value="Загрузить" />
+</form>
