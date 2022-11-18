@@ -12,7 +12,7 @@ namespace Online_Archiver.Service
             var listFiles = new List<FileDetails>();
             DirectoryInfo d = new DirectoryInfo(@"UploadedFiles");
 
-            FileInfo[] Files = d.GetFiles(); //Getting Text files
+            FileInfo[] Files = d.GetFiles();
 
             foreach (FileInfo file in Files)
             {

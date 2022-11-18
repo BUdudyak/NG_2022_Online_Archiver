@@ -52,16 +52,13 @@ namespace Online_Archiver.Controllers
             if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "ArchivedFiles")))
                 Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "ArchivedFiles"));
 
-            // создаем имя для архива
             string filename = Guid.NewGuid().ToString() + ".zip";
             string fullZipPath = Path.Combine(Directory.GetCurrentDirectory(), "ArchivedFiles", filename);
-            // определяем потоки для создания архива
             FileStream fsOut = System.IO.File.Create(fullZipPath);
             ZipOutputStream zipStream = new ZipOutputStream(fsOut);
 
-            zipStream.SetLevel(7); // уровень сжатия от 0 до 9
+            zipStream.SetLevel(7);
 
-            // перебираем выбранные файлы и добавляем их в архив
             foreach (string file in filenames)
             {
                 FileInfo fi = new FileInfo(Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles", file));
@@ -92,22 +89,17 @@ namespace Online_Archiver.Controllers
 
         public IActionResult Upload(IFormFile[] files)
         {
-            // Iterate each files
             foreach (var file in files)
             {
-                // Get the file name from the browser
                 var fileName = System.IO.Path.GetFileName(file.FileName);
 
-                // Get file path to be uploaded
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles", fileName);
 
-                // Check If file with same name exists and delete it
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
                 }
 
-                // Create a new local file and copy contents of uploaded file
                 using (var localFile = System.IO.File.OpenWrite(filePath))
                 using (var uploadedFile = file.OpenReadStream())
                 {
@@ -116,7 +108,6 @@ namespace Online_Archiver.Controllers
             }
             ViewBag.Message = "Files are successfully uploaded";
 
-            // Get files from the server
             return View("Index", _dataService.GetFiles());
         }
 
@@ -141,7 +132,6 @@ namespace Online_Archiver.Controllers
             return File(memory, GetContentType(path), Path.GetFileName(path));
         }
 
-        // Get content type
         private string GetContentType(string path)
         {
             var types = GetMimeTypes();
@@ -149,7 +139,6 @@ namespace Online_Archiver.Controllers
             return types[ext];
         }
 
-        // Get mime types
         private Dictionary<string, string> GetMimeTypes()
         {
             return new Dictionary<string, string>
