@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 using System.Text;
+using Microsoft.Net.Http.Headers;
 
 namespace Online_Archiver.Controllers
 {
@@ -40,28 +41,32 @@ namespace Online_Archiver.Controllers
 
             files.AddRange(dir.GetFiles().Select(f => f.Name));
 
-            return View("Archiver", files);
+            return View(
+                    new ArchivedFilesModel
+                    {
+                        FileName = files
+                    });
         }
 
         [HttpPost]
-        public ActionResult Archivation(List<InputModel> files)
+        public ActionResult Archivation(ArchivedFilesModel file)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            var filenames = files.Where(m => m.Selected == true).Select(f => f.Name).ToList();
+            var filenames = file.Files.Where(m => m.Selected == true).Select(f => f.Name).ToList();
 
-            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "ArchivedFiles")))
-                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "ArchivedFiles"));
+            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles")))
+                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles"));
 
-            string filename = Guid.NewGuid().ToString() + ".zip";
-            string fullZipPath = Path.Combine(Directory.GetCurrentDirectory(), "ArchivedFiles", filename);
+            string filename = file.ArchiveName + ".zip";
+            string fullZipPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles", filename);
             FileStream fsOut = System.IO.File.Create(fullZipPath);
             ZipOutputStream zipStream = new ZipOutputStream(fsOut);
 
-            zipStream.SetLevel(7);
+            zipStream.SetLevel(9);
 
-            foreach (string file in filenames)
+            foreach (string files in filenames)
             {
-                FileInfo fi = new FileInfo(Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles", file));
+                FileInfo fi = new FileInfo(Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles", files));
 
                 if (!fi.Exists)
                     continue;
@@ -84,7 +89,14 @@ namespace Online_Archiver.Controllers
             zipStream.Close();
 
             string file_type = "application/zip";
-            return File(fullZipPath, file_type, filename);
+            
+            FileStream fileStream = new FileStream(fullZipPath, FileMode.Open, FileAccess.Read);
+            FileStreamResult fileStreamResult = new FileStreamResult(fileStream, "APPLICATION/octet-stream");
+            
+            return new FileStreamResult(fileStream, new MediaTypeHeaderValue(file_type))
+            {
+                FileDownloadName = filename
+            };
         }
 
         public IActionResult Upload(IFormFile[] files)
