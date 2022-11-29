@@ -54,13 +54,15 @@ namespace Online_Archiver.Controllers
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var filenames = file.Files.Where(m => m.Selected == true).Select(f => f.Name).ToList();
 
-            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles")))
-                Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles"));
+            // if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles")))         //
+            //    Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles")); //
 
             string filename = file.ArchiveName + ".zip";
-            string fullZipPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles", filename);
-            FileStream fsOut = System.IO.File.Create(fullZipPath);
-            ZipOutputStream zipStream = new ZipOutputStream(fsOut);
+            // string fullZipPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles", filename); // 
+            MemoryStream outputMemStream = new MemoryStream();
+            // FileStream fsOut = System.IO.File.Create(fullZipPath);
+            ZipOutputStream zipStream = new ZipOutputStream(outputMemStream);
+            //ZipOutputStream zipStream = new ZipOutputStream(fsOut);
 
             zipStream.SetLevel(9);
 
@@ -85,18 +87,20 @@ namespace Online_Archiver.Controllers
                 zipStream.CloseEntry();
             }
 
-            zipStream.IsStreamOwner = true;
+            zipStream.IsStreamOwner = false;
             zipStream.Close();
 
+            outputMemStream.Position = 0;
+
             string file_type = "application/zip";
-            
-            FileStream fileStream = new FileStream(fullZipPath, FileMode.Open, FileAccess.Read);
-            FileStreamResult fileStreamResult = new FileStreamResult(fileStream, "APPLICATION/octet-stream");
-            
-            return new FileStreamResult(fileStream, new MediaTypeHeaderValue(file_type))
-            {
-                FileDownloadName = filename
-            };
+            return File(outputMemStream, file_type, filename);
+            // FileStream fileStream = new FileStream(fullZipPath, FileMode.Open, FileAccess.Read);
+            // FileStreamResult fileStreamResult = new FileStreamResult(fileStream, "APPLICATION/octet-stream");
+            // 
+            // return new FileStreamResult(fileStream, new MediaTypeHeaderValue(file_type))
+            // {
+            //     FileDownloadName = filename
+            // };
         }
 
         public IActionResult Upload(IFormFile[] files)
