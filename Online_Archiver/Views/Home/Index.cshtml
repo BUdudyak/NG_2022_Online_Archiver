@@ -3,32 +3,45 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<html>
+<head>
+    <style>
+        body {
+            background: rgb(187,210,197);
+            background: linear-gradient(167deg, rgba(187,210,197,1) 0%, rgba(83,105,118,1) 50%, rgba(41,46,73,1) 100%);
+        }
+        
+        input {
+            margin-top: 1rem;
+        }
 
-<form method="post" asp-controller="Home" asp-action="Upload" enctype="multipart/form-data">
-    <input type="file" name="files" multiple />
-    <button type="submit">Upload</button>
-</form>
+            input::file-selector-button {
+                font-weight: bold;
+                color: dodgerblue;
+                padding: 0.5em;
+                border: thin solid black;
+                border-radius: 6px;
+            }
+    </style>
+</head>
 
-@if (ViewBag.Message != null)
-{
-    <div class="alert alert-success" style="margin-top:50px">
-        @ViewBag.Message
-    </div>
-}
 
-<p style="margin-top: 50px">List of Archives</p>
-
-<ul>
-    @foreach (var item in Model)
+<body>
+    
+    <form method="post" asp-controller="Home" asp-action="Upload" enctype="multipart/form-data">
+        <input id="chooser" type="file" name="files" multiple />
+        <button id="chbutton" type="submit">Upload</button>
+    </form>
+    
+    @if (ViewBag.Message != null)
     {
-        <li>
-            <a asp-action="Download"
-                asp-route-filename="@item.FileName">
-                @item.FileName
-            </a>
-        </li>
+        <div class="alert alert-success" style="margin-top:50px">
+            @ViewBag.Message
+        </div>
     }
-</ul>
+</body>
+</html>
+
 
 <!--
 <style>

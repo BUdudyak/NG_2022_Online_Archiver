@@ -36,7 +36,6 @@ D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.genruntimeconfig.cache
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\ref\Online_Archiver.dll
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Online_Archiver.csproj.CopyComplete
-D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Upload\Index.cshtml.g.cs
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\Razor\Views\Home\Archiver.cshtml.g.cs
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\ICSharpCode.SharpZipLib.dll
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\Grpc.Core.dll
@@ -51,3 +50,6 @@ D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\staticwebassets\
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\staticwebassets\msbuild.build.Online_Archiver.props
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.Online_Archiver.props
 D:\Git\NG_2022_Online_Archiver\Online_Archiver\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.Online_Archiver.props
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\Microsoft.Web.Administration.dll
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\runtimes\unix\lib\netstandard1.5\System.ServiceProcess.ServiceController.dll
+D:\Git\NG_2022_Online_Archiver\Online_Archiver\bin\Debug\net5.0\runtimes\win\lib\netstandard1.5\System.ServiceProcess.ServiceController.dll

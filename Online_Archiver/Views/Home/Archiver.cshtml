@@ -32,10 +32,16 @@
 
             i++;
         }
-        <p><input asp-for="ArchiveName" required placeholder="Название архива"></p>
-        <input type="submit" value="Архивировать" />
+        <p>Select the degree of compression of the files</p>
+        <input type="radio" id="low" name="CompresionLevel" value="3">
+        <label for="low">Low</label><br>
+        <input type="radio" id="medium" name="CompresionLevel" value="6">
+        <label for="medium">Medium</label><br>
+        <input type="radio" id="high" name="CompresionLevel" value="9">
+        <label for="high">High</label>
+        <p><input asp-for="ArchiveName" required placeholder="Archive name"></p>
+        <input type="submit" value="Archivate" />
     </form>
 </body>
 
 </html>
-

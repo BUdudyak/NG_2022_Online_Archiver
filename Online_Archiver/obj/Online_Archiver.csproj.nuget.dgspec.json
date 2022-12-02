@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[2.46.5, )"
             },
+            "Microsoft.Web.Administration": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
             "ztools.other.SharpZipLib": {
               "target": "Package",
               "version": "[0.86.0, )"

@@ -13,6 +13,8 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 using System.Text;
 using Microsoft.Net.Http.Headers;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Web.Administration;
 
 namespace Online_Archiver.Controllers
 {
@@ -49,22 +51,17 @@ namespace Online_Archiver.Controllers
         }
 
         [HttpPost]
-        public ActionResult Archivation(ArchivedFilesModel file)
+        //[StringValidator(InvalidCharacters = " ~!@#$%^&*()[]{}/;'\"|\\", MinLength = 1, MaxLength = 60)]
+        public ActionResult Archivation(ArchivedFilesModel model)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            var filenames = file.Files.Where(m => m.Selected == true).Select(f => f.Name).ToList();
+            var filenames = model.Files.Where(m => m.Selected == true).Select(f => f.Name).ToList();
 
-            // if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles")))         //
-            //    Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles")); //
-
-            string filename = file.ArchiveName + ".zip";
-            // string fullZipPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\ArchivedFiles", filename); // 
+            string filename = model.ArchiveName + ".zip";
             MemoryStream outputMemStream = new MemoryStream();
-            // FileStream fsOut = System.IO.File.Create(fullZipPath);
             ZipOutputStream zipStream = new ZipOutputStream(outputMemStream);
-            //ZipOutputStream zipStream = new ZipOutputStream(fsOut);
 
-            zipStream.SetLevel(9);
+            zipStream.SetLevel(3);
 
             foreach (string files in filenames)
             {
@@ -94,17 +91,27 @@ namespace Online_Archiver.Controllers
 
             string file_type = "application/zip";
             return File(outputMemStream, file_type, filename);
-            // FileStream fileStream = new FileStream(fullZipPath, FileMode.Open, FileAccess.Read);
-            // FileStreamResult fileStreamResult = new FileStreamResult(fileStream, "APPLICATION/octet-stream");
-            // 
-            // return new FileStreamResult(fileStream, new MediaTypeHeaderValue(file_type))
-            // {
-            //     FileDownloadName = filename
-            // };
         }
 
+        [HttpPost]
+        [DisableRequestSizeLimit]
+        [RequestFormLimits(MultipartBodyLengthLimit = 10_737_418_240, ValueLengthLimit = Int32.MaxValue)]
         public IActionResult Upload(IFormFile[] files)
         {
+            /*using (ServerManager serverManager = new ServerManager())
+            {
+                Configuration config = serverManager.GetWebConfiguration("Default Web Site");
+                ConfigurationSection requestFilteringSection = config.GetSection("system.webServer/security/requestFiltering");
+                ConfigurationElement requestLimitsElement = requestFilteringSection.GetChildElement("requestLimits");
+                ConfigurationElementCollection headerLimitsCollection = requestLimitsElement.GetCollection("headerLimits");
+
+                ConfigurationElement addElement = headerLimitsCollection.CreateElement("add");
+                addElement["header"] = @"Content-type";
+                addElement["sizeLimit"] = 100;
+                headerLimitsCollection.Add(addElement);
+
+                serverManager.CommitChanges();
+            }*/
             foreach (var file in files)
             {
                 var fileName = System.IO.Path.GetFileName(file.FileName);
@@ -127,11 +134,13 @@ namespace Online_Archiver.Controllers
             return View("Index", _dataService.GetFiles());
         }
 
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        /*
         public async Task<IActionResult> Download(string filename)
         {
             if (filename == null)
@@ -171,6 +180,6 @@ namespace Online_Archiver.Controllers
                 {".gif", "image/gif"},
                 {".csv", "text/csv"}
             };
-        }
+        }*/
     }
 }
